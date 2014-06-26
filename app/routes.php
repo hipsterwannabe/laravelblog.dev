@@ -41,10 +41,8 @@ Route::get('/sayhello/{name}', function($name)
     {
         return Redirect::to('/');
     }
-    else
-    {
-        return View::make('my-first-view')->with('name', $name);
-    }
+
+    return View::make('my-first-view')->with('name', $name);
 });
 
 
@@ -55,11 +53,12 @@ Route::get('/sayhello/{name}', function($name)
 // Modify the route and view so that you can display the guess in addition to the roll and also tell if the guess matches the roll.
 
 Route::get('/rolldice/{guess}', function($guess){
-	$roll = rand(1,6);
-	if ($guess == $roll){
-		return 'Your guess matched the roll!';
-	} else {
-		return 'You guessed wrong!';
-	}
+	$random = rand(1,6);
+	$data = array(
+		'random'=>$random,
+		'guess'=>$guess
+	);
+	
+	return View::make('temp.roll-dice')->with($data);
 		
 });
