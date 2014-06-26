@@ -11,9 +11,9 @@
 |
 */
 // sample routes
-// Route::get('/', function(){
-// 	return 'we are home';
-// });
+Route::get('/', function(){
+	return 'we are home';
+});
 
 // Route::get('/sayHello/{name}', function($name)
 // {
