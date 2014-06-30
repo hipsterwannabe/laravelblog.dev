@@ -1,4 +1,4 @@
-<?php
+  <?php
 
 class HomeController extends BaseController {
 
@@ -15,9 +15,28 @@ class HomeController extends BaseController {
 	|
 	*/
 
-	public function showWelcome()
+	public function sayHello($name)
 	{
-		return View::make('hello');
+	    {
+	        $data = array(
+	        	'name'=>$name
+	        );
+	    }
+	     return View::make('my-first-view')->with($data);
 	}
 
+	public function showWelcome()
+	{
+		return Redirect::action('HomeController@sayHello', ['Codeup']);
+	}
+
+	public function showResume()
+	{
+		return View::make('resume');
+	}
+
+	public function showPortfolio()
+	{
+		return View::make('portfolio');
+	}
 }
