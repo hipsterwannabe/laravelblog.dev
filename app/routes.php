@@ -49,3 +49,18 @@ Route::get('/portfolio', 'HomeController@showPortfolio');
 
 //route for PostsController
 Route::resource('posts', 'PostsController');
+
+//notes during lecture below
+// Route::get('/orm-test', function(){
+// 	// $posts=Post::all();
+
+// 	// foreach ($posts as $post) {
+// 	// 		echo $post->title . "<br>";
+// 	// 		echo $post->body . "<br>";
+// 	// 	}	
+// 	$post = Post::find(1);
+// 	$post->delete();
+// 	return "Eloquent ORM is eloquent";
+// });
+
+
