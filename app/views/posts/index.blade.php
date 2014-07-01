@@ -7,6 +7,7 @@
 			<br>
 			{{{ $post->body  }}}
 			<br>
+			<hr>
 @endforeach
 
 @stop

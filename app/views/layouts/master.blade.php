@@ -7,9 +7,9 @@
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 
 	<!-- Optional theme -->
-	<link rel="stylesheet" href="bootstrap/bootstrap.css">
-	<link rel="stylesheet" href="bootstrap/resume_css.css">
-	<link rel="stylesheet" href="bootstrap/superherobootstrap.css">
+	<link rel="stylesheet" href="/bootstrap/bootstrap.css">
+	<link rel="stylesheet" href="/bootstrap/resume_css.css">
+	<link rel="stylesheet" href="/bootstrap/superherobootstrap.css">
 	<!-- pulls from bottom css, then anything not in bottom file will be pulled from top -->
 	<!-- Header for pages -->
 		<nav class="navbar navbar-default" role="navigation">
