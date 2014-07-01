@@ -71,7 +71,10 @@ class PostsController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		return "Show form for editing post $id";
+        //retrieve post by id
+		$post = Post::find($id);
+        //returns view with the make method
+        return View::make('posts.edit')->with('post',$post);
 	}
 
 
@@ -83,7 +86,12 @@ class PostsController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		return "This will update post number $id";
+        //similar to store function above, but with edited data
+		$post = Post::find($id);
+        $post->title = Input::get('title');
+        $post->body = Input::get('body');
+        $post->save();
+        return Redirect::action('PostsController@index');
 	}
 
 

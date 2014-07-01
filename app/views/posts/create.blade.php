@@ -8,15 +8,17 @@
     @if ($errors->has('body'))
         {{ $errors->first('body', '<span class="help-block">:message</span') }}
     @endif 
-    <form method='POST' action="{{{ action('PostsController@store') }}}">
-            <label for "title">Post Title</label>
-            <input id="title" name="title" type="text" value="{{{ Input::old('title') }}}">
-        
+    {{ Form::open(array('action'=>'PostsController@store')) }}
         <br>
-            <label for "body">Body</label>
-            <textarea id="body" name="body"class="form-control" rows="3">{{{ Input::old('body') }}}</textarea>
+        {{ Form::label('title', 'Title') }}
+        {{ Form::text('title') }}
+        <br>
+
+        {{ Form::label('body', 'Body')}}
+        {{ Form::textarea('body')}}
+            
         <br>
         <input type='SUBMIT'></input>
-    </form> 
+    {{ Form::close() }}
 
 @stop
