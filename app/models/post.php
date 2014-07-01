@@ -6,7 +6,8 @@ class Post extends Eloquent {
 
     //Validation rules for our model properties
     static public $rules = [
-    	'title' => 'required|max:100'
+    	'title' => 'required|max:100',
+        'body' => 'required|min:10|max:10000'
     ];
 
 }

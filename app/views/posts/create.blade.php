@@ -5,6 +5,9 @@
     @if ($errors->has('title'))
         {{ $errors->first('title', '<span class="help-block">:message</span') }}
     @endif 
+    @if ($errors->has('body'))
+        {{ $errors->first('body', '<span class="help-block">:message</span') }}
+    @endif 
     <form method='POST' action="{{{ action('PostsController@store') }}}">
             <label for "title">Post Title</label>
             <input id="title" name="title" type="text" value="{{{ Input::old('title') }}}">
