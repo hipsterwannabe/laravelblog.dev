@@ -17,9 +17,19 @@ class PostsController extends \BaseController {
 	 */
 	public function index()
 	{
-		$posts = Post::paginate(4);
-		return View::make('posts.index')->with('posts', $posts);
-		
+		$search = Input::get('search');
+	    //search form isset
+		if (isset($search))
+		{
+			//retrieve and display matching posts with pagination
+			$posts = Post::where("title", "LIKE", "%$search%")->orderBy('created_at', 'asc')->paginate(4);
+			return View::make('posts.index')->with('posts', $posts);
+		} else
+		{
+			//display all posts with pagination
+			$posts = Post::orderBy('created_at', 'desc')->paginate(4);
+			return View::make('posts.index')->with('posts', $posts);
+		}
 	}
 
 
@@ -89,28 +99,23 @@ class PostsController extends \BaseController {
 	 */
 	public function update($id)
 	{
-        $post = new Post;
-
-        if ($id != null)
-        {
-            $post = Post::findOrFail($id);
-        }
-
         $validator = Validator::make(Input::all(), Post::$rules);
 
         if ($validator->fails())
         {
+            Session::flash('errorMessage', 'There were errors with your update.');
             return Redirect::back()->withInput()->withErrors($validator);
         }
         else
         {
+            $post = new Post;
             $post->title = Input::get('title');
             $post->body = Input::get('body');
             $post->save();
+            Session::flash('successMessage', 'There were no errors with your update.');
+            return Redirect::action('PostsController@index');
         }  
-        echo successMessage;
-		echo errorMessage;
-        return Redirect::action('PostsController@show', $post->id);
+        
 	}
 
 
