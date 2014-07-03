@@ -2,6 +2,14 @@
 
 class PostsController extends \BaseController {
 
+    public function __construct()
+	{
+	    // call base controller constructor
+	    parent::__construct();
+
+	    // run auth filter before all methods on this controller except index and show
+	    $this->beforeFilter('auth.basic', array('except' => array('index', 'show')));
+	}
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -22,6 +30,7 @@ class PostsController extends \BaseController {
 	 */
 	public function create()
 	{
+
 		return View::make('posts.create-edit');
 	}
 
@@ -34,7 +43,12 @@ class PostsController extends \BaseController {
 	public function store()
 	{
 	    //CHALLENGE: combine create and edit views	
+		$validator = Validator::make(Input::all(), Post::$rules);
 
+		if ($validator->fails())
+		{
+			//show error message
+		}
         return $this->update(null);
 	}
 
@@ -94,6 +108,8 @@ class PostsController extends \BaseController {
             $post->body = Input::get('body');
             $post->save();
         }  
+        echo successMessage;
+		echo errorMessage;
         return Redirect::action('PostsController@show', $post->id);
 	}
 
@@ -106,7 +122,10 @@ class PostsController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		return "Do you REALLY want to delete post number $id?";
+		$post = Post::findOrFail($id);
+		$post->delete();
+		Session::flash('successMessage', 'Post deleted successfully');
+		return Redirect::action('PostsController@index');
 	}
 
 

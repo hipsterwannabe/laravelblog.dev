@@ -70,7 +70,13 @@
 </head>
 <body>
 	<div class="container">
-
+		@if (Session::has('successMessage'))
+    		<div class="alert alert-success">{{{ Session::get('successMessage') }}}</div>
+		@endif
+		@if (Session::has('errorMessage'))
+    		<div class="alert alert-danger">{{{ Session::get('errorMessage') }}}</div>
+		@endif
+		<!-- could be in two divs -->
     	@yield('content')
 	
 	</div>
