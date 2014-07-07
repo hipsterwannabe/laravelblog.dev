@@ -3,7 +3,7 @@
 @section('content')
  <div class="intro-message" "headline">
   <h2>PORTFOLIO</h2>
-  <h4>Some of my programming work during Codeup</h4>
+  <h4>Some information about me and of my programming work during Codeup</h4>
   </div>
 	
    <div class="media">
@@ -12,7 +12,7 @@
   </a>
   <div class="media-body">
     <h4 class="media-heading">Fizzbuzz</h4>
-    A logic exercise.
+    A logic exercise and a popular interview question.
   </div>
 </div>
 <div class="media">
@@ -21,12 +21,12 @@
   </a>
   <div class="media-body">
     <h4 class="media-heading">Address Book</h4>
-    An address book application, utilizing MySQL
+    An address book application, utilizing MySQL.
   </div>
 </div>
 <div class="row">
   <div class="col-md-3 col-md-offset-3"><h4>PHP Coding Challenge</h4><br>
-    A one-night challenge put on by PHPeople Group in June 2014
+    A one-night challenge put on by PHPeople Group in June 2014. In an hour, I made programs to count change, determine leap years and calculate a person's BAC.
     <img src="img/phpchallenge.png" alt="Challenge" class="img-circle">
   </div>
   

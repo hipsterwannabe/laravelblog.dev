@@ -62,5 +62,7 @@ Route::resource('posts', 'PostsController');
 // 	$post->delete();
 // 	return "Eloquent ORM is eloquent";
 // });
-
-
+//routes for logging in
+Route::get('/login', 'HomeController@showLogin');
+Route::post('/login', 'HomeController@doLogin');
+Route::get('/logout', 'HomeController@logout');

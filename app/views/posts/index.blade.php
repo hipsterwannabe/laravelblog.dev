@@ -2,16 +2,22 @@
 
 @section('content')
 
+<a href={{ action("PostsController@create") }} class="btn btn-default btn-sm">Create</a>
+<br>
+<div>
 @foreach ($posts as $post)
 			{{{ $post->title }}}
 			<br>
 			{{{ $post->body  }}}
+			<br>
+			{{{ $post->user->email }}}
 			<br>
 			{{{ $post->created_at->setTimezone('America/Chicago')->format('l, F jS Y @ h:i:s A') }}}
 			<br>
 			<a href={{ action('PostsController@edit', $post->id) }}" class="btn btn-default btn-sm">Edit</a>
 			<hr>
 @endforeach
+</div>
 <!--search field-->
 <div>
 <h3>Search Blog Posts By Ttitle</h3>

@@ -8,7 +8,7 @@ class PostsController extends \BaseController {
 	    parent::__construct();
 
 	    // run auth filter before all methods on this controller except index and show
-	    $this->beforeFilter('auth.basic', array('except' => array('index', 'show')));
+	    $this->beforeFilter('auth', array('except' => array('index', 'show')));
 	}
 	/**
 	 * Display a listing of the resource.
@@ -17,12 +17,14 @@ class PostsController extends \BaseController {
 	 */
 	public function index()
 	{
+		
+		$posts = Post::with('user')->get();
 		$search = Input::get('search');
 	    //search form isset
 		if (isset($search))
 		{
 			//retrieve and display matching posts with pagination
-			$posts = Post::where("title", "LIKE", "%$search%")->orderBy('created_at', 'asc')->paginate(4);
+			$posts = Post::where("title", "LIKE", "%$search%")->orderBy('created_at', 'desc')->paginate(4);
 			return View::make('posts.index')->with('posts', $posts);
 		} else
 		{
@@ -109,6 +111,7 @@ class PostsController extends \BaseController {
         else
         {
             $post = new Post;
+            $post->user_id = Auth::user()->id;
             $post->title = Input::get('title');
             $post->body = Input::get('body');
             $post->save();
