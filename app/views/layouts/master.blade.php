@@ -52,13 +52,13 @@
 		    show logout -->
 		    {{ Auth::user()->email }}
 		    <br>
-		    {{ link_to_action('PostsController@create', 'Create Post') }}
+		    {{ link_to_action('PostsController@create', 'Create Post', null, array("class"=>"btn btn-success")) }}
 		    
-		    {{ link_to_action('HomeController@logout', 'LOGOUT') }}
+		    {{ link_to_action('HomeController@logout', 'LOGOUT', null, array("class"=>"btn btn-danger")) }}
 			
 		@else
 		   <!--  show login link -->
-		   {{ link_to_action('HomeController@showLogin', 'Login') }}
+		   {{ link_to_action('HomeController@showLogin', 'Login', null, array("class"=>"btn btn-default")) }}
 		@endif
 
 	</div>

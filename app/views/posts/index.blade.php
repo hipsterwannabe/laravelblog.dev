@@ -2,7 +2,7 @@
 
 @section('content')
 
-<a href={{ action("PostsController@create") }} class="btn btn-default btn-sm">Create</a>
+
 <br>
 <div>
 @foreach ($posts as $post)
