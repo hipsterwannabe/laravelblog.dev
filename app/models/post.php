@@ -24,4 +24,22 @@ class Post extends BaseModel {
         $this->img_path = "/" . $this->imgDir . "/" . $imageName;
     }
 
+    public function renderBody()
+    {
+        // Convert he post body from markdown to HTML using parsedown.
+        // Sanitize the converted HTML with HTML Purifier.
+        // Return the sanitized result.
+        
+        // $htmlbody = new Parsedown;
+        // $dirty_html = Parsedown->text($htmlbody);
+        // $config = HTMLPurifier_Config::createDefault();
+        // $purifier = new HTMLPurifier($config);
+        // $clean_html = $purifier->purify($dirty_html);
+        //todo: use HTML purifier
+
+        $dirty_html = Parsedown::instance()->parse($this->body);
+        $config = HTMLPurifier_Config::createDefault();
+        $purifier = new HTMLPurifier($config);
+        return $purifier->purify($dirty_html);
+    }
 }

@@ -68,6 +68,7 @@ class PostsController extends \BaseController {
 	public function show($id)
 	{
 		$post = Post::find($id);
+		
 		return View::make('posts.show')->with('post',$post);
 	}
 
@@ -103,6 +104,7 @@ class PostsController extends \BaseController {
 		}
 
         $validator = Validator::make(Input::all(), Post::$rules);
+
 
         if ($validator->fails())
         {

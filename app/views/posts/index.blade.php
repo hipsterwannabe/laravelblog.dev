@@ -8,7 +8,7 @@
 @foreach ($posts as $post)
 			{{ link_to_action('PostsController@show', $post->title, $post->id) }}
 			<br>
-			{{{ $post->body  }}}
+			{{ $post->renderBody()  }}
 			<br>
 			{{{ $post->user->email }}}
 			<br>
