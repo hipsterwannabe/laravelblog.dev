@@ -55,9 +55,10 @@ class HomeController extends BaseController {
         $email = Input::get('email');
         $password = Input::get('password');
 
-        if (Auth::attempt(array('email'=> $email, 'password'=> $password)))
+        if (Auth::attempt(array('email'=> $email, 'password'=> $password), Input::has('remember')))
         {
             //log user in
+            Session::flash('infoMessage', 'Login successful.');
             return Redirect::intended(action('PostsController@index'));
         }
         else
@@ -71,6 +72,7 @@ class HomeController extends BaseController {
     public function logout()
     {
         Auth::logout();
+        Session::flash('infoMessage', 'You have logged out.');
         return Redirect::action('PostsController@index');
     }
 }

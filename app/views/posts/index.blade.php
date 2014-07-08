@@ -6,7 +6,7 @@
 <br>
 <div>
 @foreach ($posts as $post)
-			{{{ $post->title }}}
+			{{ link_to_action('PostsController@show', $post->title, $post->id) }}
 			<br>
 			{{{ $post->body  }}}
 			<br>
@@ -14,7 +14,9 @@
 			<br>
 			{{{ $post->created_at->setTimezone('America/Chicago')->format('l, F jS Y @ h:i:s A') }}}
 			<br>
-			<a href={{ action('PostsController@edit', $post->id) }}" class="btn btn-default btn-sm">Edit</a>
+			<a href="{{ action('PostsController@edit', $post->id) }}" class="btn btn-default btn-sm">Edit</a>
+			
+			<a href="{{ action('PostsController@destroy', $post->id) }}" class="btn btn-default btn-sm">Delete</a>
 			<hr>
 @endforeach
 </div>

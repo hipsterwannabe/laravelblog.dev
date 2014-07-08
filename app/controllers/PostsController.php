@@ -54,13 +54,7 @@ class PostsController extends \BaseController {
 	 */
 	public function store()
 	{
-	    //CHALLENGE: combine create and edit views	
-		$validator = Validator::make(Input::all(), Post::$rules);
-
-		if ($validator->fails())
-		{
-			//show error message
-		}
+	   
         return $this->update(null);
 	}
 
@@ -101,6 +95,13 @@ class PostsController extends \BaseController {
 	 */
 	public function update($id)
 	{
+		$post = new Post();
+        $post->user_id = Auth::user()->id;
+
+        if ($id !== null) {
+    		$post = Post::findOrFail($id);
+		}
+
         $validator = Validator::make(Input::all(), Post::$rules);
 
         if ($validator->fails())
@@ -108,17 +109,19 @@ class PostsController extends \BaseController {
             Session::flash('errorMessage', 'There were errors with your update.');
             return Redirect::back()->withInput()->withErrors($validator);
         }
-        else
+       else
         {
-            $post = new Post;
-            $post->user_id = Auth::user()->id;
             $post->title = Input::get('title');
             $post->body = Input::get('body');
             $post->save();
+            if(Input::hasFile('image') && Input::file('image')->isValid()){
+            	$post->addUploadedImage(Input::file('image'));
+            	$post->save();
+            }
+            
             Session::flash('successMessage', 'There were no errors with your update.');
             return Redirect::action('PostsController@index');
-        }  
-        
+        }
 	}
 
 
