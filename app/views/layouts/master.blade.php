@@ -11,7 +11,14 @@
 	<link rel="stylesheet" href="/bootstrap/superherobootstrap.css">
 	<!-- pulls from bottom css, then anything not in bottom file will be pulled from top -->
 	<!-- Header for pages -->
-		<nav class="navbar navbar-default" role="navigation">
+		
+	@yield('css')
+	@yield('top-script')
+
+</head>
+<body>
+
+	<nav class="navbar navbar-default" role="navigation">
 	  <div class="container-fluid">
 	    <!-- Brand and toggle get grouped for better mobile display -->
 	    <div class="navbar-header">
@@ -42,10 +49,7 @@
 	    </div><!-- /.navbar-collapse -->
 	  </div><!-- /.container-fluid -->
 	</nav>
-	@yield('css')
-	@yield('top-script')
-</head>
-<body>
+
 	<div class="container">
 		@if (Auth::check())
 		    <!-- show user email
@@ -83,5 +87,6 @@
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	
 </body>
 </html>
